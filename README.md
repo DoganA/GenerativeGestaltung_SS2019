@@ -1,1 +1,2 @@
 # GenerativeGestaltung_SS2019
+An der Beuth Hochschule durchgeführte Veranstalltung der Generative Gestaltung im Masterstudiengang Medieninformatik
