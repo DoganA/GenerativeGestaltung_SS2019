@@ -6,44 +6,39 @@ function Bear() {
     let baloon_y = 120;
     let speed_x = 0;
     let speed_y = 0;
-
-    console.log("<-------- load Bear -------->");
     /****************************************************************
      *Update the angle of the ballon, holding by the bear
      ****************************************************************/
     this.update = function (speedX, speedY) {
         speed_x = speedX;
         speed_y = speedY;
-        console.log("<-------- load Bear update -------->");
     }
     /****************************************************************
      * Drawing the Body of baer.
      ***************************************************************/
     this.show = function () {
-        console.log("<-------- load Bear show -------->");
-        //createCanvas(600, 500);
         ellipseMode(CENTER);
         rectMode(CENTER);
         //Body & Shade
         noStroke();
         fill(249, 150, 1)
         ellipse(303, 450, 300, 300)
-        
+
         //fill(249, 150, 1)
         //ellipse(302, 250, 203, 200)
 
         //fill(249, 209, 110)
-        ellipse(300, 450, 290, 300)
+        //ellipse(300, 450, 300, 300)
 
         //Baloon
         fill(244, 122, 86)
-        ellipse(523- speed_x, 120- speed_y, 138, 140) 
-        
+        ellipse(523 - speed_x, 120 - speed_y, 138, 140)
+
         //shadow
         fill(255, 152, 129)
         ellipse(baloon_x - speed_x, baloon_y - speed_y, 130, 140)
-        fill(0, 0, 0)
         stroke(-150)
+        fill(0, 0, 0)
         line(line_x - speed_x, line_y - speed_y, 520, 350)
         noFill()
         arc(495, 350, 50, 50, 0, PI) //Leine an der Hand
@@ -133,5 +128,63 @@ function Bear() {
         noStroke()
         fill(245, 218, 157)
         arc(300, 310, 50, 50, 0, PI);
+        this.clock();
+    }
+
+    this.clock = function (tx, ty, radius) {
+
+        translate(303, 450);
+        var radius = int(min(200, 200) / 2);
+        var numPoints = 60;
+        var angle = TWO_PI / numPoints;
+
+        var secondsRadius = radius * 0.72;
+        var minutesRadius = radius * 0.60;
+        var hoursRadius = radius * 0.50;
+
+        var s = map(second(), 0, 60, 0, TWO_PI) - HALF_PI;
+        var m = map(minute() + norm(second(), 0, 60), 0, 60, 0, TWO_PI) - HALF_PI;
+        var h = map(hour() + norm(minute(), 0, 60), 0, 24, 0, TWO_PI * 2) - HALF_PI;
+
+        //Draw the minute/second ticks
+        // beginShape() will build the points into a single custom shape  
+        strokeWeight(2);
+        stroke(0);
+        beginShape(POINTS);
+        var i = 0;
+        while (i < numPoints) {
+            x = cos(angle * i) * secondsRadius;
+            y = sin(angle * i) * secondsRadius;
+            vertex(x, y);
+            i++;
+        }
+        endShape();
+
+        strokeWeight(1);
+        line(0, 0, cos(s) * secondsRadius, sin(s) * secondsRadius);
+        strokeWeight(2);
+        line(0, 0, cos(m) * minutesRadius, sin(m) * minutesRadius);
+        strokeWeight(4); // hour hand should be thicker
+        line(0, 0, cos(h) * hoursRadius, sin(h) * hoursRadius);
+
+        // Write the numerals text
+        fill(0, 0, 0);
+        textSize(16);
+        strokeWeight(0.1);
+        x = cos(PI + HALF_PI) * secondsRadius - 10;
+        y = sin(PI + HALF_PI) * secondsRadius - 10;
+        text("12", x, y);
+
+        x = cos(TWO_PI) * secondsRadius + 10;
+        y = sin(TWO_PI) * secondsRadius + 5;
+        text("3", x, y);
+
+        x = cos(HALF_PI) * secondsRadius - 7;
+        y = sin(HALF_PI) * secondsRadius + 20;
+        text("6", x, y);
+
+        x = cos(PI) * secondsRadius - 25;
+        y = sin(PI) * secondsRadius + 5;
+        text("9", x, y);
     }
 }
