@@ -12,7 +12,6 @@ function Bear() {
     this.update = function (speedX, speedY) {
         speed_x = speedX;
         speed_y = speedY;
-
     }
     /****************************************************************
      * Drawing the Body of baer.
