@@ -3,16 +3,10 @@ function Clock(_x, _y, _radius) {
     var y = _y;
     var r = _radius;
 
-    var radius = 350; //radius der Uhrkreises
-    //var radius = _radius; //radius der Uhrkreises
+    var radius = 75.0; //radius der Uhrkreises
     var numPoints = 60; //Anzahl der Minuten bzw.Sekunden
     var secondsRadius = radius * 0.9; //length of second hand
     var angle = 0;
-    console.log("<-------- Load Clock -------->");
-
-    this.update = function () {
-
-    }
 
     this.draw = function () {
         strokeWeight(2);
@@ -30,7 +24,7 @@ function Clock(_x, _y, _radius) {
         var secondsRadius = radius * 0.72;
         var minutesRadius = radius * 0.60;
         var hoursRadius = radius * 0.50;
-        var clockDiameter = radius * 1.8;
+        var clockDiameter = radius * 2;
 
         // Draw the clock background
         fill(80);
@@ -40,6 +34,7 @@ function Clock(_x, _y, _radius) {
         var s = map(second(), 0, 60, 0, TWO_PI) - HALF_PI;
         var m = map(minute() + norm(second(), 0, 60), 0, 60, 0, TWO_PI) - HALF_PI;
         var h = map(hour() + norm(minute(), 0, 60), 0, 24, 0, TWO_PI * 2) - HALF_PI;
+
         //Draw the minute/second ticks
         // beginShape() will build the points into a single custom shape  
         strokeWeight(2);
@@ -61,7 +56,7 @@ function Clock(_x, _y, _radius) {
         strokeWeight(4); // hour hand should be thicker
         line(0, 0, cos(h) * hoursRadius, sin(h) * hoursRadius);
 
-        // Write the numerals
+        // Write the numerals text
         fill(255);
         textSize(16);
         strokeWeight(0.1);
@@ -72,11 +67,14 @@ function Clock(_x, _y, _radius) {
         x = cos(TWO_PI) * secondsRadius + 10;
         y = sin(TWO_PI) * secondsRadius + 5;
         text("3", x, y);
+
         x = cos(HALF_PI) * secondsRadius - 7;
         y = sin(HALF_PI) * secondsRadius + 20;
         text("6", x, y);
+
         x = cos(PI) * secondsRadius - 25;
         y = sin(PI) * secondsRadius + 5;
         text("9", x, y);
+
     }
 }

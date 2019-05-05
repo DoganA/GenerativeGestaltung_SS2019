@@ -6,39 +6,44 @@ function Bear() {
     let baloon_y = 120;
     let speed_x = 0;
     let speed_y = 0;
+
+    console.log("<-------- load Bear -------->");
     /****************************************************************
      *Update the angle of the ballon, holding by the bear
      ****************************************************************/
     this.update = function (speedX, speedY) {
         speed_x = speedX;
         speed_y = speedY;
+        console.log("<-------- load Bear update -------->");
     }
     /****************************************************************
      * Drawing the Body of baer.
      ***************************************************************/
     this.show = function () {
+        console.log("<-------- load Bear show -------->");
         //createCanvas(600, 500);
         ellipseMode(CENTER);
         rectMode(CENTER);
         //Body & Shade
-        noStroke()
+        noStroke();
         fill(249, 150, 1)
         ellipse(303, 450, 300, 300)
+        
+        //fill(249, 150, 1)
+        //ellipse(302, 250, 203, 200)
 
-        fill(249, 150, 1)
-        ellipse(302, 250, 203, 200)
-
-        fill(249, 209, 110)
+        //fill(249, 209, 110)
         ellipse(300, 450, 290, 300)
 
         //Baloon
         fill(244, 122, 86)
-        ellipse(523- speed_x, 120- speed_y, 138, 140) //shadow
-
+        ellipse(523- speed_x, 120- speed_y, 138, 140) 
+        
+        //shadow
         fill(255, 152, 129)
         ellipse(baloon_x - speed_x, baloon_y - speed_y, 130, 140)
-
-        stroke(126)
+        fill(0, 0, 0)
+        stroke(-150)
         line(line_x - speed_x, line_y - speed_y, 520, 350)
         noFill()
         arc(495, 350, 50, 50, 0, PI) //Leine an der Hand
